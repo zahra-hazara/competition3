@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 //secret key for jwt
@@ -7,9 +7,10 @@ const secret = process.env.JWT_SECRET || 'this is my secret';
 
 
 //ultilty function to generate jwt
-const generateToken = (userId) => {
-    return jwt.sign({ userId }, JWT_secret, { expiresIn: '1h' });
+const createToken = (_id) => {
+  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
 };
+
 
 //registration controller
 const register = async (req, res) => {
